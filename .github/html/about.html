@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Jignesh — UI/UX Designer & Developer. 3+ years crafting digital products for startups and indie projects." />
+  <meta name="author" content="Jignesh" />
+  <meta property="og:title"       content="About — Jignesh · UI/UX Designer" />
+  <meta property="og:description" content="3+ years of UI/UX design. CracklePDF, SaaS dashboards, fintech apps." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Fonts — identical to index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <title>About — Jignesh · UI/UX Designer</title>
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS — exact match with index.html
+       ========================================================================== */
+    :root {
+      /* Backgrounds */
+      --bg-page:        #EDE8E3;
+      --bg-card:        #E2DAD2;
+      --bg-card-hover:  #D8CFC6;
+      --bg-dark:        #1A1A1A;
+      --bg-dark-hover:  #2C2C2C;
+      --bg-white:       #FFFFFF;
+
+      /* Text */
+      --text-primary:   #1A1A1A;
+      --text-secondary: #555555;
+      --text-muted:     #888888;
+      --text-white:     #FFFFFF;
+      --text-white-dim: rgba(255,255,255,0.72);
+
+      /* Accent */
+      --accent:         #E05C2A;
+      --accent-hover:   #C84E22;
+      --accent-glow:    rgba(224, 92, 42, 0.22);
+
+      /* Borders & Shadows */
+      --border-light:   rgba(26,26,26,0.10);
+      --border-medium:  rgba(26,26,26,0.18);
+
+      --shadow-xs:  0 2px 8px rgba(0,0,0,0.06);
+      --shadow-sm:  0 4px 16px rgba(0,0,0,0.08);
+      --shadow-md:  0 8px 32px rgba(0,0,0,0.11);
+      --shadow-lg:  0 16px 48px rgba(0,0,0,0.15);
+      --shadow-nav: 0 8px 32px rgba(0,0,0,0.28);
+
+      /* Typography — same as index.html */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', -apple-system, sans-serif;
+      --font-mono:    'Space Mono', 'Courier New', monospace;
+
+      /* Layout */
+      --sidebar-w: 252px;
+    }
+
+    /* ==========================================================================
+       RESET & BASE — matches index.html exactly
+       ========================================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    button { background: none; border: none; cursor: pointer; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-card); }
+    ::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--accent); color: white;
+      padding: 8px 16px; border-radius: 8px; font-weight: 600; z-index: 9999;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* ==========================================================================
+       NAVBAR — Identical floating dark pill from index.html
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: max-content;
+      max-width: calc(100vw - 32px);
+    }
+
+    .navbar__pill {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: var(--bg-dark);
+      border-radius: 999px;
+      padding: 9px 18px 9px 14px;
+      box-shadow: var(--shadow-nav);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.3s ease;
+    }
+
+    .navbar__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .navbar__avatar-svg {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.18);
+      background: linear-gradient(135deg, var(--accent), #c84e22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .navbar__name {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-white);
+      letter-spacing: -0.01em;
+    }
+
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar__link {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-white-dim);
+      text-decoration: none;
+      transition: color 0.18s ease;
+      position: relative;
+    }
+    .navbar__link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+    .navbar__link:hover { color: var(--text-white); }
+    .navbar__link:hover::after { transform: scaleX(1); }
+    .navbar__link.active { color: var(--text-white); }
+    .navbar__link.active::after { transform: scaleX(1); }
+
+    .navbar__resume {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 7px 16px;
+      border-radius: 999px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 3px 10px var(--accent-glow);
+    }
+    .navbar__resume:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px var(--accent-glow);
+    }
+
+    .navbar__toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 22px;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+    .navbar__toggle span {
+      width: 100%; height: 2px;
+      background: white; border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 680px) {
+      .navbar__links { display: none; }
+      .navbar__toggle { display: flex; }
+
+      .navbar__links.open {
+        display: flex;
+        position: absolute;
+        top: 62px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        background: var(--bg-dark);
+        border-radius: 16px;
+        padding: 12px 20px;
+        min-width: 180px;
+        gap: 12px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(255,255,255,0.06);
+        animation: fadeDown 0.2s ease;
+      }
+      @keyframes fadeDown {
+        from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+        to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+      }
+    }
+
+    /* ==========================================================================
+       REVEAL ANIMATIONS — same as index.html
+       ========================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 60ms;  }
+    .reveal-delay-2 { transition-delay: 120ms; }
+    .reveal-delay-3 { transition-delay: 180ms; }
+
+    /* ==========================================================================
+       PAGE LAYOUT — sidebar + main (Michelle Chiu structure)
+       ========================================================================== */
+    .page {
+      display: flex;
+      min-height: 100vh;
+      padding-top: 0;          /* navbar is fixed, no push needed */
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--bg-card);              /* warm card tone */
+      border-right: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding-top: 80px;                       /* space for fixed navbar */
+      z-index: 10;
+    }
+    .sidebar::-webkit-scrollbar { width: 0; }
+
+    /* Profile block */
+    .sidebar__profile {
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      border: 3px solid var(--bg-page);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Open to work badge */
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B7A34;
+      background: #D6F0DC;
+      padding: 3px 9px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+    .open-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #1B7A34;
+      display: inline-block;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.35; }
+    }
+
+    .sidebar__name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar__handle {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .sidebar__role {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .sidebar__meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Company chips — styled to match warm palette */
+    .company-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      border: 1px solid var(--border-medium);
+      background: var(--bg-page);
+      color: var(--text-secondary);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .chip.figma    { color: #F24E1E; border-color: rgba(242,78,30,0.35); background: rgba(242,78,30,0.06); }
+    .chip.dribbble { color: #EA4C89; border-color: rgba(234,76,137,0.35); background: rgba(234,76,137,0.06); }
+    .chip.notion   { color: #1A1A1A; border-color: rgba(26,26,26,0.30); background: var(--bg-page); }
+    .chip.webflow  { color: #146EF5; border-color: rgba(20,110,245,0.35); background: rgba(20,110,245,0.06); }
+
+    /* Action buttons */
+    .sidebar__actions {
+      display: flex;
+      gap: 8px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .btn-msg {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-body);
+      padding: 9px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-msg:hover { background: var(--bg-dark-hover); transform: translateY(-1px); }
+
+    .btn-save {
+      width: 38px; height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--border-medium);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .btn-save:hover { background: var(--bg-card-hover); }
+
+    /* Sidebar nav tabs */
+    .sidebar__tabs {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 10px;
+      gap: 2px;
+    }
+
+    .sidebar__tab {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .sidebar__tab:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+    .sidebar__tab.active {
+      background: var(--bg-page);
+      color: var(--text-primary);
+      font-weight: 600;
+      box-shadow: var(--shadow-xs);
+    }
+    .sidebar__tab svg { flex-shrink: 0; }
+
+    /* Social links at bottom */
+    .sidebar__socials {
+      margin-top: auto;
+      padding: 14px 20px;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .s-link {
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+    .s-link:hover { color: var(--accent-hover); text-decoration: underline; }
+    .s-sep { font-size: 12px; color: var(--border-medium); }
+
+    /* ─── MAIN CONTENT ─── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      padding-top: 72px;     /* push below fixed navbar */
+    }
+
+    /* ─── TWO-COLUMN SCROLL BODY ─── */
+    .main__body {
+      display: flex;
+      overflow: auto;
+      flex: 1;
+    }
+
+    /* Left text column — sticky scroll */
+    .content-col {
+      width: 380px;
+      flex-shrink: 0;
+      padding: 32px 28px 60px;
+      border-right: 1px solid var(--border-light);
+      overflow-y: auto;
+      height: calc(100vh - 72px);
+      position: sticky;
+      top: 72px;
+    }
+    .content-col::-webkit-scrollbar { width: 0; }
+
+    /* Right projects column */
+    .projects-col {
+      flex: 1;
+      padding: 32px 36px 60px;
+      overflow-y: auto;
+      height: calc(100vh - 72px);
+      min-width: 0;
+    }
+    .projects-col::-webkit-scrollbar { width: 5px; }
+    .projects-col::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 3px; }
+
+    /* ==========================================================================
+       LEFT COLUMN CONTENT STYLES
+       ========================================================================== */
+
+    /* Big serif heading — same as index.html headings */
+    .intro__heading {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .intro__heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .intro__bio {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    /* Links row — Michelle Chiu style */
+    .intro__links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+    .intro__links-arrow {
+      color: var(--accent);
+      font-weight: 700;
+      margin-right: 2px;
+    }
+    .intro__links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+    .intro__links a:hover { color: var(--accent-hover); text-decoration: underline; }
+    .intro__links-sep { color: var(--border-medium); }
+
+    /* Section dividers in left column */
+    .content-block {
+      margin-bottom: 26px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .content-block:last-child { border-bottom: none; }
+
+    .block-heading {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .block-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .award-item,
+    .speaking-item,
+    .skills-item {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+
+    .award-item a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .award-item a:hover { text-decoration: underline; }
+
+    /* ==========================================================================
+       RIGHT COLUMN — PROJECT ENTRIES
+       ========================================================================== */
+    .project-entry {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .project-entry:last-child { border-bottom: none; margin-bottom: 0; }
+
+    /* Entry header — underline divider like Michelle */
+    .pe-header {
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--text-primary);
+      margin-bottom: 28px;
+    }
+
+    .pe-header-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .pe-header-sub {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* Two-column: text left, images right */
+    .pe-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .pe-description {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .pe-disciplines-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .pe-disciplines {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+
+    /* Image 2×2 grid */
+    .pe-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+
+    .pe-img-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-card);
+      position: relative;
+      border: 1px solid var(--border-light);
+    }
+
+    .pe-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.06em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pe-img-placeholder .img-icon { font-size: 26px; }
+    .pe-img-wrap:hover .pe-img-placeholder { transform: scale(1.05); }
+
+    /* ==========================================================================
+       MOBILE RESPONSIVE
+       ========================================================================== */
+    @media (max-width: 1200px) {
+      .pe-row { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    @media (max-width: 1000px) {
+      :root { --sidebar-w: 220px; }
+      .content-col { width: 340px; }
+    }
+
+    @media (max-width: 860px) {
+      .page { flex-direction: column; }
+      .sidebar {
+        width: 100%; height: auto; position: relative;
+        padding-top: 80px; flex-direction: row; flex-wrap: wrap;
+        border-right: none; border-bottom: 1px solid var(--border-light);
+      }
+      .sidebar__profile  { flex-direction: row; flex-wrap: wrap; align-items: center; width: 100%; gap: 12px; }
+      .sidebar__actions  { padding: 10px 16px; width: 100%; }
+      .sidebar__tabs     { flex-direction: row; width: 100%; border-top: 1px solid var(--border-light); padding: 8px 10px; }
+      .sidebar__socials  { display: none; }
+      .main { padding-top: 0; }
+      .main__body { flex-direction: column; overflow: visible; }
+      .content-col {
+        width: 100%; height: auto; position: relative; top: 0;
+        border-right: none; border-bottom: 1px solid var(--border-light);
+        padding: 24px 20px;
+      }
+      .projects-col { height: auto; padding: 24px 20px; }
+    }
+
+    @media (max-width: 680px) {
+      .intro__heading { font-size: 26px; }
+      .pe-header-title { font-size: 22px; }
+      .pe-images { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVBAR — identical floating dark pill from index.html
+  ════════════════════════════════════════════════════════════════ -->
+  <header class="navbar" role="banner">
+    <nav class="navbar__pill" role="navigation" aria-label="Main navigation">
+
+      <a href="index.html" class="navbar__brand" aria-label="Home">
+        <div class="navbar__avatar-svg" aria-hidden="true">J</div>
+        <span class="navbar__name">jignesh</span>
+      </a>
+
+      <ul class="navbar__links" id="navLinks" role="list">
+        <li><a href="index.html#work" class="navbar__link">Work</a></li>
+        <li><a href="about.html"      class="navbar__link active" aria-current="page">About</a></li>
+        <li><a href="index.html#contact" class="navbar__link">Contact</a></li>
+      </ul>
+
+      <a href="#" class="navbar__resume" aria-label="Download Resume">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 15.5l-5-5h3.5V4h3v6.5H17l-5 5zM5 18h14v2H5v-2z"/>
+        </svg>
+        Resume
+      </a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </nav>
+  </header>
+
+  <div class="page" id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SIDEBAR — profile info
+    ════════════════════════════════════════════════════════════════ -->
+    <aside class="sidebar" aria-label="Profile sidebar">
+
+      <div class="sidebar__profile reveal">
+        <div class="avatar" role="img" aria-label="Profile of Jignesh">🧑🏻‍💻</div>
+
+        <span class="open-badge">Open to Work</span>
+
+        <h1 class="sidebar__name">Jignesh</h1>
+        <p class="sidebar__handle">@jignesh · 📍 India</p>
+        <p class="sidebar__role">UI/UX Designer &amp; Developer</p>
+
+        <p class="sidebar__meta">3 Years Experience Includes:</p>
+
+        <div class="company-chips" aria-label="Tools &amp; platforms">
+          <span class="chip figma">Figma</span>
+          <span class="chip dribbble">Dribbble</span>
+          <span class="chip notion">Notion</span>
+          <span class="chip webflow">Webflow</span>
+        </div>
+      </div>
+
+      <div class="sidebar__actions">
+        <a href="mailto:hello@jignesh.design" class="btn-msg" aria-label="Send message">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Message
+        </a>
+        <button class="btn-save" aria-label="Save profile">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar__tabs" aria-label="Profile sections">
+        <a href="index.html" class="sidebar__tab">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Home
+        </a>
+        <a href="about.html" class="sidebar__tab active" aria-current="page">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          Portfolio
+        </a>
+      </nav>
+
+      <div class="sidebar__socials" aria-label="Social links">
+        <a href="#" class="s-link">Résumé</a>
+        <span class="s-sep">|</span>
+        <a href="#" class="s-link">LinkedIn</a>
+        <span class="s-sep">|</span>
+        <a href="#" class="s-link">Dribbble</a>
+        <span class="s-sep">|</span>
+        <a href="#" class="s-link">Behance</a>
+        <span class="s-sep">|</span>
+        <a href="#" class="s-link">GitHub</a>
+        <span class="s-sep">|</span>
+        <a href="#" class="s-link">Twitter</a>
+      </div>
+
+    </aside>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         MAIN
+    ════════════════════════════════════════════════════════════════ -->
+    <main class="main">
+      <div class="main__body">
+
+        <!-- ─── LEFT: TEXT COLUMN ─── -->
+        <div class="content-col">
+
+          <h2 class="intro__heading reveal">
+            Hi, I'm <em>Jignesh</em>
+          </h2>
+
+          <p class="intro__bio reveal reveal-delay-1">
+            UI/UX Designer and frontend developer with 3+ years of experience crafting
+            digital products for startups, agencies, and indie projects. I've led design
+            for Chrome extensions, SaaS dashboards, fintech apps, and browser-based tools.
+            My work has reached 10,000+ users across 12 countries.
+          </p>
+
+          <p class="intro__bio reveal reveal-delay-2">
+            Currently building <strong>CracklePDF</strong> — an all-in-one PDF tool for the
+            browser. Previously designed at a product agency in Ahmedabad and freelanced for
+            startups across India. I care deeply about accessible, well-documented design
+            that engineers love to implement.
+          </p>
+
+          <!-- Links row — Michelle pattern with → arrow -->
+          <p class="intro__links reveal reveal-delay-3">
+            <span class="intro__links-arrow">→</span>
+            <a href="#">Résumé</a>
+            <span class="intro__links-sep">|</span>
+            <a href="#">LinkedIn</a>
+            <span class="intro__links-sep">|</span>
+            <a href="#">Twitter</a>
+            <span class="intro__links-sep">|</span>
+            <a href="#">Dribbble</a>
+            <span class="intro__links-sep">|</span>
+            <a href="#">Behance</a>
+            <span class="intro__links-sep">|</span>
+            <a href="#">GitHub</a>
+          </p>
+
+          <!-- Clients & Experience -->
+          <div class="content-block reveal">
+            <p class="block-heading">Clients / Experience</p>
+            <p class="block-text">
+              Accenture, Adobe, BookMyShow, BrowserStack, CracklePDF, DataDog,
+              DesignStudio, Dribbble, Figma Community, Flipkart, GrowthSchool,
+              HubSpot, IndiaMART, Jio, Lenskart, MakeMyTrip, Myntra, Notion,
+              OYO Rooms, PayU, PhonePe, Razorpay, Shopify Partners, Swiggy,
+              TechSparks, Unacademy, Upwork, Vistara, Webflow Partners, Zerodha
+            </p>
+          </div>
+
+          <!-- Awards & Recognition -->
+          <div class="content-block reveal">
+            <p class="block-heading">Awards, Recognition &amp; Highlights</p>
+            <div class="award-item">Adobe Certified Expert — XD &amp; Photoshop <a href="#">[Certificate]</a></div>
+            <div class="award-item">Awwwards Honorable Mention — CracklePDF UI <a href="#">[Link]</a></div>
+            <div class="award-item">Behance Featured — Design Systems Vol. 3 <a href="#">[Link]</a></div>
+            <div class="award-item">CSS Design Awards — Special Kudos <a href="#">[Link]</a></div>
+            <div class="award-item">DesignNation Featured Attendee — Bangalore 2023 <a href="#">[Link]</a></div>
+            <div class="award-item">Dribbble Top Shot — 6 times <a href="#">[Link]</a></div>
+            <div class="award-item">Figma Community — 4,200+ duplicates across templates</div>
+            <div class="award-item">GrowthSchool Top Designer Badge — Cohort 7 <a href="#">[Link]</a></div>
+            <div class="award-item">Layers.to Featured Portfolio <a href="#">[Link]</a></div>
+            <div class="award-item">Medium Top Writer in Design — 110K+ reads <a href="#">[Link]</a></div>
+            <div class="award-item">Product Hunt #2 Product of the Day — CracklePDF <a href="#">[Link]</a></div>
+            <div class="award-item">Smashing Magazine — Selected Guest Writer</div>
+            <div class="award-item">TechSparks Best Student Design Award 2021</div>
+            <div class="award-item">UX Collective Published Author — 3 articles</div>
+            <div class="award-item">Webflow Partner — Certified Developer 2023</div>
+            <div class="award-item">YC Startup School Graduate — 2023 Batch</div>
+          </div>
+
+          <!-- Speaking & Writing -->
+          <div class="content-block reveal">
+            <p class="block-heading">Speaking, Writing &amp; Community</p>
+            <div class="speaking-item">Figma Config — Community Showcase Speaker 2024</div>
+            <div class="speaking-item">GrowthSchool Live Class — "Design Systems at Scale"</div>
+            <div class="speaking-item">Local Meet India — Panelist, UX for Bharat</div>
+            <div class="speaking-item">Medium — Regular author (Design, Productivity, Extensions)</div>
+            <div class="speaking-item">Notion Ambassador — Regional India 2023–2024</div>
+            <div class="speaking-item">Tech Talk @ IIM Ahmedabad — "Idea to Chrome Extension"</div>
+            <div class="speaking-item">Webflow Conf India — Attendee &amp; Workshop Facilitator</div>
+          </div>
+
+          <!-- Skills -->
+          <div class="content-block reveal">
+            <p class="block-heading">Skills &amp; Tools</p>
+            <div class="skills-item">Accessibility Design (WCAG AA)</div>
+            <div class="skills-item">Chrome Extension Development</div>
+            <div class="skills-item">Component Architecture</div>
+            <div class="skills-item">Design Systems</div>
+            <div class="skills-item">Figma (Advanced)</div>
+            <div class="skills-item">Framer</div>
+            <div class="skills-item">Frontend Development (HTML / CSS / JS)</div>
+            <div class="skills-item">Interaction Design</div>
+            <div class="skills-item">Mobile Design</div>
+            <div class="skills-item">Motion &amp; Micro-animation</div>
+            <div class="skills-item">Product Design</div>
+            <div class="skills-item">Prototyping</div>
+            <div class="skills-item">React</div>
+            <div class="skills-item">User Research &amp; Testing</div>
+            <div class="skills-item">Visual Design</div>
+            <div class="skills-item">Webflow</div>
+            <div class="skills-item">Wireframing</div>
+          </div>
+
+        </div>
+        <!-- /content-col -->
+
+        <!-- ─── RIGHT: PROJECTS COLUMN ─── -->
+        <div class="projects-col">
+
+          <!-- ── Entry 1 — CracklePDF ── -->
+          <article class="project-entry reveal" aria-label="CracklePDF Chrome Extension">
+            <div class="pe-header">
+              <h3 class="pe-header-title">CracklePDF Chrome Extension</h3>
+              <p class="pe-header-sub">
+                An all-in-one PDF tool built natively in the browser. Merge, split, compress,
+                convert, annotate, and sign PDFs client-side — no upload, full privacy.
+              </p>
+            </div>
+            <div class="pe-row">
+              <div class="pe-text">
+                <p class="pe-description">
+                  As solo designer and developer, I owned end-to-end product — from user research
+                  and wireframing to shipped UI and Chrome Web Store listing. Redesigned the toolbar
+                  three times based on 40+ user feedback sessions, reducing time-on-task by 31%.
+                </p>
+                <p class="pe-description">
+                  Reached 3,200+ installs in its first 3 months with a 4.8-star rating.
+                  Featured on Product Hunt as #2 Product of the Day.
+                </p>
+                <p class="pe-disciplines-label">Disciplines</p>
+                <div class="pe-disciplines">
+                  Chrome Extension UI<br>
+                  Icon &amp; Brand Design<br>
+                  Interaction Design<br>
+                  Product Design<br>
+                  User Research<br>
+                  Web Development
+                </div>
+              </div>
+              <div class="pe-images">
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#E05C2A,#f59e0b)">
+                    <span class="img-icon">📄</span>Popup UI
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#c84e22,#E05C2A)">
+                    <span class="img-icon">🔀</span>Merge
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#f59e0b,#ef4444)">
+                    <span class="img-icon">✂️</span>Split
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#1A1A1A,#444)">
+                    <span class="img-icon">🏪</span>Store
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Entry 2 — MotionRAG ── -->
+          <article class="project-entry reveal" aria-label="MotionRAG Studio SaaS Dashboard">
+            <div class="pe-header">
+              <h3 class="pe-header-title">MotionRAG Studio — SaaS Dashboard</h3>
+              <p class="pe-header-sub">
+                AI-powered video and motion-graphics generation platform. Designed the complete
+                experience — from onboarding to the multi-step RAG pipeline workspace.
+              </p>
+            </div>
+            <div class="pe-row">
+              <div class="pe-text">
+                <p class="pe-description">
+                  Designed the full product from scratch — information architecture, design system
+                  (80+ components), and interactive prototypes. Worked closely with 2 engineers
+                  across a 10-week sprint cycle.
+                </p>
+                <p class="pe-description">
+                  Core design challenge: making a 7-step AI pipeline feel simple and linear.
+                  Achieved this through progressive disclosure, inline guidance, and a
+                  step-indicator component.
+                </p>
+                <p class="pe-disciplines-label">Disciplines</p>
+                <div class="pe-disciplines">
+                  Dashboard Design<br>
+                  Design System (80+ components)<br>
+                  Figma Prototyping<br>
+                  Interaction Design<br>
+                  Product Strategy<br>
+                  User Research &amp; Testing
+                </div>
+              </div>
+              <div class="pe-images">
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#0f172a,#1e293b)">
+                    <span class="img-icon">📊</span>Dashboard
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#7c3aed,#4f46e5)">
+                    <span class="img-icon">🤖</span>AI Pipeline
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#4f46e5,#0ea5e9)">
+                    <span class="img-icon">🎬</span>Preview
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#0ea5e9,#06b6d4)">
+                    <span class="img-icon">📦</span>Export
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Entry 3 — FinPay ── -->
+          <article class="project-entry reveal" aria-label="FinPay Mobile Banking App">
+            <div class="pe-header">
+              <h3 class="pe-header-title">FinPay — Mobile Banking App <em style="font-style:italic; font-size:14px; font-family:var(--font-body); font-weight:500; color:var(--text-muted);">(NDA)</em></h3>
+              <p class="pe-header-sub">
+                Redesigned a fintech mobile banking application for Gen-Z users across India.
+                Research-led, dark-mode-first approach that improved task completion by 28%.
+              </p>
+            </div>
+            <div class="pe-row">
+              <div class="pe-text">
+                <p class="pe-description">
+                  Conducted 12 moderated user interviews and a card-sorting exercise with 40 participants.
+                  Synthesised findings into a new IA that removed 3 navigation layers and reduced
+                  the primary payment flow from 7 taps to 3.
+                </p>
+                <p class="pe-description">
+                  Partnered with product and engineering leads to define the design system tokens,
+                  dark-mode color system, and motion guidelines — ensuring consistency across
+                  iOS and Android handoffs.
+                </p>
+                <p class="pe-disciplines-label">Disciplines</p>
+                <div class="pe-disciplines">
+                  Accessibility (WCAG AA)<br>
+                  Card Sorting &amp; IA<br>
+                  Dark Mode Design<br>
+                  Mobile Design (iOS + Android)<br>
+                  Usability Testing<br>
+                  User Research (12 interviews)
+                </div>
+              </div>
+              <div class="pe-images">
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#059669,#047857)">
+                    <span class="img-icon">🏠</span>Home
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#0ea5e9,#0284c7)">
+                    <span class="img-icon">💳</span>Pay
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#047857,#065f46)">
+                    <span class="img-icon">📈</span>Analytics
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#0284c7,#1d4ed8)">
+                    <span class="img-icon">🔔</span>Alerts
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Entry 4 — Design System ── -->
+          <article class="project-entry reveal" aria-label="Design System v2.0">
+            <div class="pe-header">
+              <h3 class="pe-header-title">Design System v2.0</h3>
+              <p class="pe-header-sub">
+                Built a comprehensive design system from scratch — token-based color palette,
+                component library with 80+ components, interaction patterns, and documentation site.
+              </p>
+            </div>
+            <div class="pe-row">
+              <div class="pe-text">
+                <p class="pe-description">
+                  Reduced design-to-dev handoff time by 40% and eliminated a major class of
+                  inconsistency bugs. Built in Figma with auto-layout, variables, and full
+                  component documentation with usage guidelines.
+                </p>
+                <p class="pe-description">
+                  Published open-source on Figma Community — 1,600+ duplicates.
+                  Adopted by 3 other teams internally within the first quarter.
+                </p>
+                <p class="pe-disciplines-label">Disciplines</p>
+                <div class="pe-disciplines">
+                  Component Architecture<br>
+                  Design Tokens<br>
+                  Documentation<br>
+                  Figma Variables<br>
+                  Icon Design<br>
+                  Visual Design
+                </div>
+              </div>
+              <div class="pe-images">
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#E05C2A,#c84e22)">
+                    <span class="img-icon">🎨</span>Tokens
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#6366f1,#8b5cf6)">
+                    <span class="img-icon">⚙️</span>Components
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#0ea5e9,#7c3aed)">
+                    <span class="img-icon">🔷</span>Icons
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#1A1A1A,#374151)">
+                    <span class="img-icon">📋</span>Docs
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Entry 5 — Freelance ── -->
+          <article class="project-entry reveal" aria-label="Freelance and Community Work">
+            <div class="pe-header">
+              <h3 class="pe-header-title">Freelance, Talks &amp; Community</h3>
+              <p class="pe-header-sub">
+                UI consulting, design workshops, conference speaking, and community building
+                across India's design and startup ecosystem.
+              </p>
+            </div>
+            <div class="pe-row">
+              <div class="pe-text">
+                <p class="pe-description">
+                  Accenture (UI audit) · BookMyShow (event page redesign) ·
+                  DesignStudio Agency (senior designer, 1yr) · Figma Config Community Showcase ·
+                  GrowthSchool live class facilitator · IIM Ahmedabad tech talk ·
+                  IndiaMART dashboard redesign · Notion Ambassador India ·
+                  Razorpay payment UI (freelance) · Upwork top-rated 98% JSS ·
+                  Webflow Conf India facilitator
+                </p>
+                <p class="pe-disciplines-label">Disciplines</p>
+                <div class="pe-disciplines">
+                  Brand Identity<br>
+                  Consulting<br>
+                  Design Education<br>
+                  Freelance Product Design<br>
+                  UI Audits<br>
+                  Workshop Facilitation
+                </div>
+              </div>
+              <div class="pe-images">
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#f59e0b,#d97706)">
+                    <span class="img-icon">🎙️</span>Speaking
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#8b5cf6,#7c3aed)">
+                    <span class="img-icon">🎨</span>Workshop
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#ec4899,#db2777)">
+                    <span class="img-icon">🤝</span>Freelance
+                  </div>
+                </div>
+                <div class="pe-img-wrap">
+                  <div class="pe-img-placeholder" style="background: linear-gradient(135deg,#14b8a6,#0d9488)">
+                    <span class="img-icon">🌍</span>Community
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+        <!-- /projects-col -->
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT — same as index.html
+       ========================================================================== -->
+  <script>
+    /* Scroll Reveal */
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+          });
+        },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    })();
+
+    /* Navbar mobile toggle */
+    (function () {
+      const toggle = document.getElementById('navToggle');
+      const links  = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+
+      toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
+      });
+
+      links.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', () => {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    /* Navbar scroll glass effect — identical to index.html */
+    (function () {
+      const pill = document.querySelector('.navbar__pill');
+      if (!pill) return;
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (window.scrollY > 40) {
+              pill.style.background = 'rgba(26,26,26,0.96)';
+              pill.style.backdropFilter = 'blur(14px)';
+              pill.style.webkitBackdropFilter = 'blur(14px)';
+            } else {
+              pill.style.background = 'var(--bg-dark)';
+              pill.style.backdropFilter = 'none';
+              pill.style.webkitBackdropFilter = 'none';
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
